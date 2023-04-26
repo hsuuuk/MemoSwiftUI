@@ -35,9 +35,7 @@ struct ComposeView: View {
                     } label: {
                         Text("저장")
                     }
-
                 }
-
             }
         }
     }
