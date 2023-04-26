@@ -59,13 +59,11 @@
 		8FA8978929F8D55F000FE50C /* MemoSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				8FA8978A29F8D55F000FE50C /* MemoSwiftUIApp.swift */,
 				8FA897A029F8D582000FE50C /* Memory */,
 				8FA8979F29F8D57E000FE50C /* CoreData */,
+				8FA8978A29F8D55F000FE50C /* MemoSwiftUIApp.swift */,
 				8FA8979D29F8D572000FE50C /* MainListView.swift */,
 				8FA8978E29F8D561000FE50C /* Assets.xcassets */,
-				8FA8979329F8D561000FE50C /* Persistence.swift */,
-				8FA8979529F8D561000FE50C /* MemoSwiftUI.xcdatamodeld */,
 				8FA8979029F8D561000FE50C /* Preview Content */,
 			);
 			path = MemoSwiftUI;
@@ -82,6 +80,8 @@
 		8FA8979F29F8D57E000FE50C /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				8FA8979329F8D561000FE50C /* Persistence.swift */,
+				8FA8979529F8D561000FE50C /* MemoSwiftUI.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
