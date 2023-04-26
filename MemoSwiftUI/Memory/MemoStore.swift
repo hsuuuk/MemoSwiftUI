@@ -19,7 +19,7 @@ class MemoStore: ObservableObject {
         ]
     }
     
-    func inset(memo: String) {
+    func insert(memo: String) {
         list.insert(Memo(content: memo), at: 0)
     }
     
