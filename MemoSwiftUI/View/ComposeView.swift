@@ -11,14 +11,20 @@ struct ComposeView: View {
     @EnvironmentObject var store: MemoStore
     @State var content: String = ""
     @Environment(\.dismiss) var dismiss
+    var memo: Memo? = nil
     
     var body: some View {
         NavigationView {
             VStack {
                 TextEditor(text: $content)
                     .padding()
+                    .onAppear {
+                        if let memo = memo {
+                            content = memo.content
+                        }
+                    }
             }
-            .navigationTitle("새 메모")
+            .navigationTitle(memo != nil ? "메모 편집" : "새 메모")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
@@ -28,9 +34,14 @@ struct ComposeView: View {
                         Text("취소")
                     }
                 }
+                 
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button {
-                        store.insert(memo: content)
+                        if let memo = memo {
+                            store.update(memo: memo, content: content)
+                        } else {
+                            store.insert(memo: content)
+                        }
                         dismiss()
                     } label: {
                         Text("저장")

@@ -10,6 +10,8 @@ import SwiftUI
 struct DetailView: View {
     @ObservedObject var memo: Memo
     @EnvironmentObject var store: MemoStore
+    @State var isPresentedCompose: Bool = false
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack {
@@ -21,7 +23,6 @@ struct DetailView: View {
                         
                         Spacer()
                     }
-                    
                     Text(memo.insertDate, style: .date)
                         .padding()
                         .font(.footnote)
@@ -31,12 +32,26 @@ struct DetailView: View {
         }
         .navigationTitle("메모 보기")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItemGroup {
+                Button {
+                    isPresentedCompose = true
+                } label: {
+                    Image(systemName: "square.and.pencil")
+                }
+            }
+        }
+        .sheet(isPresented: $isPresentedCompose) {
+            ComposeView(memo: memo)
+        }
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(memo: Memo(content: "Hi"))
-            .environmentObject(MemoStore())
+        NavigationView {
+            DetailView(memo: Memo(content: "Hi"))
+                .environmentObject(MemoStore())
+        }
     }
 }
